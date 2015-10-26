@@ -500,7 +500,7 @@ function runLevel(level, Display, andThen) {
     }
   });
 }
-
+var image = document.createElement('img');
 function runGame(plans, Display) {
   function startLevel(n) {
     // Create a new level using the nth element of array plans
@@ -508,10 +508,13 @@ function runGame(plans, Display) {
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);
+	  else if ("lost" > 3)
+		alert("You Lost!!");
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
-        console.log("You win!");
+		alert("You WON!");
+		//image.src ='http://vanarsdaleelementary.digitalpto.com/files/2015/09/Winner.jpg';
     });
   }
   startLevel(0);
